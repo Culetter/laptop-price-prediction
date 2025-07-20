@@ -8,7 +8,7 @@ This project builds a machine learning model to predict laptop prices based on h
 ├── /notebooks
 │   ├── data-analysis.ipynb     # Exploratory data analysis and dataset overview
 │   └── model-training.ipynb    # Model training experiments and results visualization
-├── /results                    # Folder for traind model and saved plots
+├── /results                    # Folder for traind model and saved plots/metrics
 ├── /src
 │   ├── requirements.txt/       # Required Libraries
 │   └── train_model.py          # Main training, evaluation, and prediction script
