@@ -1,0 +1,3 @@
+Mean Absolute Error (MAE): 167.76 €
+Root Mean Squared Error (RMSE): 260.66 €
+R²: 0.8245

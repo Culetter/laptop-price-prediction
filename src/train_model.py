@@ -6,6 +6,7 @@ from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 import matplotlib.pyplot as plt
 import numpy as np
 import joblib
+import os
 
 def load_data(path):
     df = pd.read_csv('../data/laptop_price.csv', encoding='ISO-8859-1')
@@ -26,6 +27,7 @@ def load_data(path):
     return train_test_split(X, y, test_size=0.2)
 
 def train():
+    os.makedirs('../results/', exist_ok=True)
     X_train, X_test, y_train, y_test = load_data('../data/laptop_price.csv')
 
     model = RandomForestRegressor()
@@ -37,9 +39,20 @@ def train():
     rmse = np.sqrt(mean_squared_error(y_test, y_pred))
     r2 = r2_score(y_test, y_pred)
 
-    print(f"Mean Absolute Error (MAE): {mae:.2f} €")
-    print(f"Root Mean Squared Error (RMSE): {rmse:.2f} €")
-    print(f"R²: {r2:.4f}")
+    mae = mean_absolute_error(y_test, y_pred)
+    rmse = np.sqrt(mean_squared_error(y_test, y_pred))
+    r2 = r2_score(y_test, y_pred)
+
+    results_text = (
+        f"Mean Absolute Error (MAE): {mae:.2f} €\n"
+        f"Root Mean Squared Error (RMSE): {rmse:.2f} €\n"
+        f"R²: {r2:.4f}\n"
+    )
+
+    print(results_text)
+
+    with open('../results/metrics.txt', 'w', encoding='utf-8') as f:
+        f.write(results_text)
 
     plt.scatter(y_test, y_pred)
     plt.xlabel("Real prices")
